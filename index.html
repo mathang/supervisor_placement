@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinical Supervisor Portal Demo</title>
+    <title>Clinical Supervisor Portal</title>
     <style>
-        /* Basic CSS for styling - keep it clean and simple */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -14,90 +13,122 @@
             color: #333;
             line-height: 1.6;
         }
+
         .container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 30px auto;
             background-color: #ffffff;
             padding: 30px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
         }
+
         .header {
             text-align: center;
             padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
+            border-bottom: 1px solid #e4e4e4;
+            margin-bottom: 35px;
         }
-        .header img {
-            max-width: 150px; /* Placeholder for university logo */
-            margin-bottom: 15px;
+
+        .logo-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 18px;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #0056b3, #4dabf7);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
+
         .header h1 {
-            color: #0056b3; /* University primary color */
-            font-size: 2.2em;
-            margin: 0;
-            line-height: 1.2;
+            color: #0056b3;
+            font-size: 2.3em;
+            margin: 0 0 8px;
         }
+
+        .header p {
+            margin: 0;
+            color: #4a4a4a;
+        }
+
         .emergency-contact {
-            background-color: #ffe0b2; /* Light orange */
+            background-color: #ffe0b2;
             border: 1px solid #ffcc80;
-            padding: 15px;
-            border-radius: 6px;
+            padding: 18px;
+            border-radius: 8px;
             text-align: center;
             font-weight: bold;
-            color: #e65100; /* Darker orange */
-            margin-bottom: 30px;
-            display: none; /* Hidden by default, shown after login */
+            color: #e65100;
+            margin: 0 0 30px;
+            display: none;
         }
+
         .dashboard-section {
             background-color: #f9f9f9;
-            padding: 25px;
-            border-radius: 6px;
-            margin-bottom: 25px;
+            padding: 28px;
+            border-radius: 10px;
+            margin-bottom: 28px;
             border: 1px solid #e0e0e0;
         }
+
         .dashboard-section h2 {
             color: #0056b3;
             margin-top: 0;
-            font-size: 1.6em;
+            font-size: 1.7em;
             border-bottom: 2px solid #0056b3;
             padding-bottom: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
+
         .quick-access-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
+
         .quick-access-button {
             display: block;
-            padding: 25px 20px;
-            background-color: #007bff; /* Primary button color */
+            padding: 24px 20px;
+            background-color: #007bff;
             color: white;
             text-align: center;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1.15em;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
-        .quick-access-button:hover {
+
+        .quick-access-button:hover,
+        .quick-access-button:focus {
             background-color: #0056b3;
             transform: translateY(-2px);
+            outline: none;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
+
         .status-items p {
-            margin: 8px 0;
-            font-size: 1.1em;
+            margin: 10px 0;
+            font-size: 1.05em;
         }
+
         .status-items p strong {
             color: #0056b3;
         }
+
         .chat-widget {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #28a745; /* Green for chat */
+            background-color: #28a745;
             color: white;
             padding: 12px 20px;
             border-radius: 30px;
@@ -106,51 +137,120 @@
             font-weight: bold;
             transition: background-color 0.2s ease;
         }
+
         .chat-widget:hover {
             background-color: #218838;
         }
 
-        /* Login Form Specific Styles */
         #login-section {
             text-align: center;
         }
+
         #login-form {
             background-color: #f9f9f9;
             padding: 30px;
-            border-radius: 8px;
-            display: inline-block; /* To center the form */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             margin-top: 30px;
+            max-width: 420px;
         }
+
+        #login-form label {
+            display: block;
+            text-align: left;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
         #login-form input[type="email"],
         #login-form input[type="text"] {
             width: calc(100% - 20px);
-            padding: 12px;
-            margin-bottom: 15px;
+            padding: 12px 10px;
+            margin-bottom: 18px;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1.1em;
+            border-radius: 5px;
+            font-size: 1.05em;
         }
+
         #login-form button {
             background-color: #007bff;
             color: white;
             padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 1.1em;
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
+
         #login-form button:hover {
             background-color: #0056b3;
         }
+
         .login-message {
             margin-top: 15px;
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.95em;
+            color: #555;
         }
+
         .hidden {
-            display: none;
+            display: none !important;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: #0056b3;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1em;
+            padding: 0;
+        }
+
+        .back-button:hover,
+        .back-button:focus {
+            text-decoration: underline;
+            outline: none;
+        }
+
+        .view-header p {
+            margin: 10px 0 0;
+            color: #4a4a4a;
+        }
+
+        .view-content {
+            margin-top: 24px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .detail-list {
+            padding-left: 20px;
+        }
+
+        .detail-list li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            #login-form {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -158,70 +258,52 @@
 
     <div class="container">
         <div class="header">
-            <img src="data:image/png;base64,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" alt="University Logo">
-            <h1>Clinical Placement Supervisor Portal</h1>
+            <div class="logo-placeholder">UCP</div>
+            <h1>Clinical Supervisor Portal</h1>
+            <p>Supporting high-quality placements with clear, timely guidance.</p>
         </div>
 
         <div id="login-section">
-            <div id="email-step">
-                <p>Welcome! Enter your registered email to get started.</p>
-                <form id="login-form" onsubmit="sendCode(event)">
-                    <input type="email" id="emailInput" placeholder="your.email@example.com" required>
-                    <button type="submit">Send Login Code</button>
-                    <p class="login-message">No complex passwords – just your email and a quick SMS code.</p>
+            <h2>Supervisor Login</h2>
+            <p class="login-message">Enter your university email address to receive a secure access code.</p>
+            <div id="login-form">
+                <form id="email-step">
+                    <label for="emailInput">University email</label>
+                    <input type="email" id="emailInput" name="email" placeholder="you@example.edu" required>
+                    <button type="submit">Send access code</button>
                 </form>
-            </div>
-
-            <div id="code-step" class="hidden">
-                <p>A login code has been sent to your mobile phone. Please enter it below.</p>
-                <form id="code-form" onsubmit="verifyCode(event)">
-                    <input type="text" id="codeInput" placeholder="Enter SMS code" required maxlength="6">
-                    <label style="display: block; margin-top: 10px; font-size: 0.9em;">
-                        <input type="checkbox" id="rememberDevice"> Remember this device (30 days)
+                <form id="code-step" class="hidden">
+                    <label for="codeInput">6-digit code</label>
+                    <input type="text" id="codeInput" name="code" inputmode="numeric" minlength="6" maxlength="6" placeholder="Enter code" required>
+                    <button type="submit">Verify and continue</button>
+                    <p class="login-message">
+                        Didn't receive the text? <a href="#" id="resendLink">Resend code</a>
+                    </p>
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.95em; margin-top: 10px;">
+                        <input type="checkbox" id="rememberDevice"> Remember this device for 30 days
                     </label>
-                    <button type="submit" style="margin-top: 20px;">Log In</button>
-                    <p class="login-message">Code expires in 5 minutes. Didn't receive it? <a href="#" onclick="resendCode(event)">Resend code</a>.</p>
                 </form>
+                <p id="loginStatus" class="login-message" role="status" aria-live="polite"></p>
             </div>
         </div>
 
         <div id="portal-dashboard" class="hidden">
-            <div class="emergency-contact" id="emergencyContact">
-                Need urgent help? Call us immediately: **+61 7 1234 5678**
+            <div class="dashboard-section welcome-panel">
+                <h2 id="greeting">Welcome back!</h2>
+                <p>Choose a task below to jump into your supervision workflow.</p>
             </div>
-
-            <div class="dashboard-section">
-                <h2 id="greeting">Welcome back, Dr. Smith!</h2>
-                <div class="status-items">
-                    <p>Current Students: <strong>2 (Sarah Chen, Tom Davies)</strong></p>
-                    <p>Upcoming Deadline: <strong>Sarah Chen's Mid-Way Assessment due July 15</strong></p>
-                    <p>New Messages: <strong>1 (from Clinical Educator, re: Tom Davies)</strong></p>
-                </div>
+            <div id="emergencyContact" class="emergency-contact">
+                Emergency support: Call the Clinical Placement Team at (555) 123-4567 for urgent assistance.
             </div>
-
-            <div class="dashboard-section">
-                <h2>Quick Access Menu</h2>
-                <div class="quick-access-grid">
-                    <a href="#" class="quick-access-button">View My Students</a>
-                    <a href="#" class="quick-access-button">Complete Assessments</a>
-                    <a href="#" class="quick-access-button">Resource Library</a>
-                    <a href="#" class="quick-access-button">Message Educators</a>
-                    <a href="#" class="quick-access-button">Book Site Visit</a>
-                    <a href="#" class="quick-access-button">Submit Feedback</a>
-                </div>
-            </div>
+            <div id="view-container"></div>
         </div>
     </div>
 
-    <div class="chat-widget">
+    <div class="chat-widget" id="chatWidget">
         Chat with our AI Assistant
     </div>
 
     <script>
-        // --- DEMONSTRATION JAVASCRIPT ---
-        // In a real application, these functions would involve API calls to your backend (Power Automate, SharePoint, etc.)
-        // For this demo, we'll simulate the process.
-
         const emailStep = document.getElementById('email-step');
         const codeStep = document.getElementById('code-step');
         const portalDashboard = document.getElementById('portal-dashboard');
@@ -230,70 +312,433 @@
         const emailInput = document.getElementById('emailInput');
         const codeInput = document.getElementById('codeInput');
         const rememberDeviceCheckbox = document.getElementById('rememberDevice');
+        const loginStatus = document.getElementById('loginStatus');
+        const viewContainer = document.getElementById('view-container');
+        const chatWidget = document.getElementById('chatWidget');
 
-        let simulatedUserEmail = ''; // To store the email entered
-        let correctSimulatedCode = '123456'; // A fixed code for demo purposes
+        let simulatedUserEmail = '';
+        const correctSimulatedCode = '123456';
+
+        const views = {
+            dashboard: {
+                title: 'Dashboard',
+                render: () => `
+                    <div class="dashboard-section">
+                        <h2>Placement Snapshot</h2>
+                        <div class="status-items">
+                            <p><strong>Current Students:</strong> 12 actively placed this term</p>
+                            <p><strong>Assessments Due:</strong> 3 midterm reviews within the next 7 days</p>
+                            <p><strong>Messages:</strong> 2 new updates from university educators</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-section">
+                        <h2>Quick Access Menu</h2>
+                        <div class="quick-access-grid">
+                            ${createActionButton('View My Students', 'students')}
+                            ${createActionButton('Complete Assessments', 'assessments')}
+                            ${createActionButton('Resource Library', 'resources')}
+                            ${createActionButton('Message Educators', 'messages')}
+                            ${createActionButton('Book Site Visit', 'site-visits')}
+                            ${createActionButton('Submit Feedback', 'feedback')}
+                        </div>
+                    </div>
+                `
+            },
+            students: {
+                title: 'My Students',
+                description: 'Track placement progress, evaluation milestones, and communication history for each student you supervise.',
+                actions: [
+                    { label: 'Placement Overview', target: 'students-overview' },
+                    { label: 'Progress Reviews', target: 'students-progress' },
+                    { label: 'Student Communication Log', target: 'students-communication' }
+                ],
+                parent: 'dashboard'
+            },
+            'students-overview': {
+                title: 'Placement Overview',
+                description: 'Review placement assignments, site details, and key contacts for every active student.',
+                content: `
+                    <ul class="detail-list">
+                        <li>8 active placements confirmed with weekly reflections submitted.</li>
+                        <li>2 students flagged for additional support — review notes before Friday.</li>
+                        <li>Download the placement matrix to view clinical hours completed to date.</li>
+                    </ul>
+                `,
+                parent: 'students'
+            },
+            'students-progress': {
+                title: 'Progress Reviews',
+                description: 'Monitor competency development through formative and summative evaluations.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Midterm rubrics auto-save — finish drafts before sharing with learners.</li>
+                        <li>Compare self-assessments with supervisor ratings to highlight discussion points.</li>
+                        <li>Schedule 1:1 check-ins directly from each student profile.</li>
+                    </ul>
+                `,
+                parent: 'students'
+            },
+            'students-communication': {
+                title: 'Student Communication Log',
+                description: 'Document outreach, coaching notes, and agreements from supervisory conversations.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Log call summaries and attach follow-up tasks for learners.</li>
+                        <li>Tag discussions that require educator escalation.</li>
+                        <li>Generate a weekly digest of student updates for record keeping.</li>
+                    </ul>
+                `,
+                parent: 'students'
+            },
+            assessments: {
+                title: 'Assessments',
+                description: 'Launch new evaluations and revisit drafts awaiting completion.',
+                actions: [
+                    { label: 'Start Midterm Assessment', target: 'assessments-midterm' },
+                    { label: 'Finalize Final Assessment', target: 'assessments-final' },
+                    { label: 'Review Past Assessments', target: 'assessments-history' }
+                ],
+                parent: 'dashboard'
+            },
+            'assessments-midterm': {
+                title: 'Midterm Assessment',
+                description: 'Capture midpoint performance insights with guided prompts and rubrics.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Pre-populated criteria aligned with university competencies.</li>
+                        <li>Auto-save responses and share drafts with co-supervisors.</li>
+                        <li>Schedule a feedback meeting and send calendar invites.</li>
+                    </ul>
+                `,
+                parent: 'assessments'
+            },
+            'assessments-final': {
+                title: 'Final Assessment',
+                description: 'Document overall performance, recommendations, and licensing readiness.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Summarize strengths, growth areas, and final placement decision.</li>
+                        <li>Attach evidence artifacts collected throughout the term.</li>
+                        <li>Export signed copies for institutional records.</li>
+                    </ul>
+                `,
+                parent: 'assessments'
+            },
+            'assessments-history': {
+                title: 'Assessment Archive',
+                description: 'Browse previous evaluations to spot trends over multiple placements.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Filter by student, cohort, or competency to compare outcomes.</li>
+                        <li>Download PDFs for accreditation reporting.</li>
+                        <li>Identify patterns that inform supervisor calibration sessions.</li>
+                    </ul>
+                `,
+                parent: 'assessments'
+            },
+            resources: {
+                title: 'Resource Library',
+                description: 'Access clinical guides, teaching supports, and policy references.',
+                actions: [
+                    { label: 'Clinical Guidelines', target: 'resources-guidelines' },
+                    { label: 'Teaching Resources', target: 'resources-teaching' },
+                    { label: 'Policy Updates', target: 'resources-policy' }
+                ],
+                parent: 'dashboard'
+            },
+            'resources-guidelines': {
+                title: 'Clinical Guidelines',
+                description: 'Ensure placements align with the latest clinical standards and safety expectations.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Download procedural checklists tailored to each specialty area.</li>
+                        <li>Review evidence-based practice updates added this month.</li>
+                        <li>Share guideline summaries with your student cohort.</li>
+                    </ul>
+                `,
+                parent: 'resources'
+            },
+            'resources-teaching': {
+                title: 'Teaching Resources',
+                description: 'Leverage coaching tools and reflection prompts to guide learner growth.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Access skill lab scenarios complete with debrief questions.</li>
+                        <li>Browse mentorship strategies curated by faculty leads.</li>
+                        <li>Assign reflection activities that tie to competency rubrics.</li>
+                    </ul>
+                `,
+                parent: 'resources'
+            },
+            'resources-policy': {
+                title: 'Policy Updates',
+                description: 'Stay informed about placement compliance, documentation, and safety requirements.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Review the latest background check submission timelines.</li>
+                        <li>Download the updated clinical dress code policy.</li>
+                        <li>Track mandatory training completion for site staff.</li>
+                    </ul>
+                `,
+                parent: 'resources'
+            },
+            messages: {
+                title: 'Message Educators',
+                description: 'Collaborate with academic staff to coordinate support for learners.',
+                actions: [
+                    { label: 'Compose New Message', target: 'messages-compose' },
+                    { label: 'View Inbox', target: 'messages-inbox' },
+                    { label: 'Schedule Video Call', target: 'messages-schedule' }
+                ],
+                parent: 'dashboard'
+            },
+            'messages-compose': {
+                title: 'Compose Message',
+                description: 'Send secure updates directly to the academic educator team.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Use templates for student progress alerts and success highlights.</li>
+                        <li>Attach assessment drafts or supporting documents.</li>
+                        <li>Route urgent concerns through the escalation workflow.</li>
+                    </ul>
+                `,
+                parent: 'messages'
+            },
+            'messages-inbox': {
+                title: 'Inbox Overview',
+                description: 'Keep track of educator responses and outstanding action items.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Mark messages as complete once tasks are fulfilled.</li>
+                        <li>Pin priority conversations for quick reference.</li>
+                        <li>Export conversation history for accreditation audits.</li>
+                    </ul>
+                `,
+                parent: 'messages'
+            },
+            'messages-schedule': {
+                title: 'Schedule Video Call',
+                description: 'Coordinate virtual meetings to align on student progress plans.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Offer time slots synced with your calendar availability.</li>
+                        <li>Auto-generate meeting agendas with student talking points.</li>
+                        <li>Send follow-up summaries and action items to attendees.</li>
+                    </ul>
+                `,
+                parent: 'messages'
+            },
+            'site-visits': {
+                title: 'Book Site Visit',
+                description: 'Plan on-site observations to support clinical learning environments.',
+                actions: [
+                    { label: 'Request New Visit', target: 'visits-request' },
+                    { label: 'View Upcoming Visits', target: 'visits-upcoming' },
+                    { label: 'Document Visit Notes', target: 'visits-notes' }
+                ],
+                parent: 'dashboard'
+            },
+            'visits-request': {
+                title: 'Request a Visit',
+                description: 'Submit preferred dates, focus areas, and stakeholders for your next visit.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Check site capacity and blackout dates before sending.</li>
+                        <li>Select visit objectives aligned with learner goals.</li>
+                        <li>Receive confirmation notifications once scheduled.</li>
+                    </ul>
+                `,
+                parent: 'site-visits'
+            },
+            'visits-upcoming': {
+                title: 'Upcoming Visits',
+                description: 'Review scheduled visits, logistics, and preparation tasks.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Download agendas and observation checklists for each visit.</li>
+                        <li>Coordinate with site staff using embedded contact links.</li>
+                        <li>Confirm travel arrangements and documentation requirements.</li>
+                    </ul>
+                `,
+                parent: 'site-visits'
+            },
+            'visits-notes': {
+                title: 'Visit Notes',
+                description: 'Capture observations, coaching points, and follow-up actions.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Tag notes to students, competencies, or site resources.</li>
+                        <li>Share summarized feedback with learners post-visit.</li>
+                        <li>Export notes for accreditation or site partnership reviews.</li>
+                    </ul>
+                `,
+                parent: 'site-visits'
+            },
+            feedback: {
+                title: 'Submit Feedback',
+                description: 'Provide insights that improve clinical placements and supervisor support.',
+                actions: [
+                    { label: 'Share Student Feedback', target: 'feedback-student' },
+                    { label: 'Report Site Issue', target: 'feedback-site' },
+                    { label: 'Suggest New Resource', target: 'feedback-resource' }
+                ],
+                parent: 'dashboard'
+            },
+            'feedback-student': {
+                title: 'Student Feedback',
+                description: 'Celebrate achievements and note opportunities for additional coaching.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Highlight key competency milestones reached this term.</li>
+                        <li>Flag areas where faculty support would be beneficial.</li>
+                        <li>Share testimonials to recognize outstanding performance.</li>
+                    </ul>
+                `,
+                parent: 'feedback'
+            },
+            'feedback-site': {
+                title: 'Site Issue Report',
+                description: 'Alert the placement office to concerns impacting safety or learning quality.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Log environmental or staffing challenges encountered.</li>
+                        <li>Attach supporting documentation or photos securely.</li>
+                        <li>Track resolution progress with placement coordinators.</li>
+                    </ul>
+                `,
+                parent: 'feedback'
+            },
+            'feedback-resource': {
+                title: 'Suggest a Resource',
+                description: 'Recommend tools, readings, or workshops that elevate supervision practice.',
+                content: `
+                    <ul class="detail-list">
+                        <li>Submit lesson plans or reflection prompts that worked well.</li>
+                        <li>Nominate external experts for guest teaching sessions.</li>
+                        <li>Flag technology platforms that streamline documentation.</li>
+                    </ul>
+                `,
+                parent: 'feedback'
+            }
+        };
+
+        function createActionButton(label, target) {
+            return `<button type="button" class="quick-access-button" data-target="${target}">${label}</button>`;
+        }
+
+        function renderView(viewId) {
+            const view = views[viewId];
+            if (!view) {
+                console.warn(`View "${viewId}" not found.`);
+                return;
+            }
+
+            if (viewId === 'dashboard') {
+                viewContainer.innerHTML = view.render();
+                attachActionHandlers();
+                return;
+            }
+
+            let html = '<div class="dashboard-section">';
+
+            if (view.parent) {
+                const parentTitle = views[view.parent]?.title || 'Dashboard';
+                html += `<button type="button" class="back-button" data-target="${view.parent}">← Back to ${parentTitle}</button>`;
+            }
+
+            html += `<div class="view-header"><h2>${view.title}</h2>`;
+            if (view.description) {
+                html += `<p>${view.description}</p>`;
+            }
+            html += '</div>';
+
+            if (view.actions?.length) {
+                html += '<div class="quick-access-grid">';
+                html += view.actions.map(action => createActionButton(action.label, action.target)).join('');
+                html += '</div>';
+            }
+
+            if (view.content) {
+                html += `<div class="view-content">${view.content}</div>`;
+            }
+
+            html += '</div>';
+
+            viewContainer.innerHTML = html;
+            attachActionHandlers();
+        }
+
+        function attachActionHandlers() {
+            viewContainer.querySelectorAll('[data-target]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.getAttribute('data-target');
+                    renderView(target);
+                });
+            });
+        }
 
         function sendCode(event) {
-            event.preventDefault(); // Prevent default form submission
-            simulatedUserEmail = emailInput.value; // Store the entered email
+            event.preventDefault();
+            simulatedUserEmail = emailInput.value.trim();
 
-            // Simulate sending code (in a real app, Power Automate sends SMS)
-            console.log(`Simulating: SMS code '${correctSimulatedCode}' sent to ${simulatedUserEmail}`);
+            if (!simulatedUserEmail) {
+                loginStatus.textContent = 'Please enter a valid university email.';
+                return;
+            }
+
+            console.log(`Simulating: SMS code "${correctSimulatedCode}" sent to ${simulatedUserEmail}`);
 
             emailStep.classList.add('hidden');
             codeStep.classList.remove('hidden');
-            codeInput.focus(); // Focus on the code input
-            alert(`DEMO: A login code '${correctSimulatedCode}' has been "sent" to your phone.`); // For demo clarity
+            codeInput.focus();
+            loginStatus.textContent = 'Demo mode: use code 123456 to continue.';
         }
 
         function verifyCode(event) {
-            event.preventDefault(); // Prevent default form submission
-            const enteredCode = codeInput.value;
+            event.preventDefault();
+            const enteredCode = codeInput.value.trim();
 
             if (enteredCode === correctSimulatedCode) {
-                // Simulate successful login
                 codeStep.classList.add('hidden');
                 portalDashboard.classList.remove('hidden');
-                emergencyContact.style.display = 'block'; // Show emergency contact on dashboard
-                
-                // Personalize greeting
-                const userName = simulatedUserEmail.split('@')[0]; // Simple extraction
+                emergencyContact.style.display = 'block';
+
+                const userName = simulatedUserEmail.split('@')[0] || 'Supervisor';
                 greeting.textContent = `Welcome back, ${capitalizeFirstLetter(userName)}!`;
 
-                // In a real app, "remember device" would set a secure cookie/token
                 if (rememberDeviceCheckbox.checked) {
-                    console.log("DEMO: Device remembered. In a real app, this would set a persistent token.");
+                    console.log('Demo: device remembered for future logins.');
                 }
-                alert('DEMO: Login successful! Welcome to the portal.'); // For demo clarity
+
+                loginStatus.textContent = '';
+                renderView('dashboard');
             } else {
-                alert('Incorrect code. Please try again.');
-                codeInput.value = ''; // Clear input
+                loginStatus.textContent = 'Incorrect code. Please try again or resend the code.';
+                codeInput.value = '';
+                codeInput.focus();
             }
         }
 
         function resendCode(event) {
             event.preventDefault();
-            // Simulate resending code
-            console.log(`Simulating: Resending SMS code '${correctSimulatedCode}' to ${simulatedUserEmail}`);
-            alert(`DEMO: Code '${correctSimulatedCode}' has been "resent" to your phone.`); // For demo clarity
+            if (!simulatedUserEmail) {
+                loginStatus.textContent = 'Enter your email first so we know where to send the code.';
+                return;
+            }
+            console.log(`Simulating: Resending SMS code "${correctSimulatedCode}" to ${simulatedUserEmail}`);
+            loginStatus.textContent = 'Demo mode: code 123456 has been resent.';
         }
 
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
-        // Placeholder for Chatbot interaction
-        document.querySelector('.chat-widget').addEventListener('click', () => {
-            alert('DEMO: Chatbot would open here. You can ask questions like "Who is my student?" or "How do I submit an assessment?"');
-        });
+        emailStep.addEventListener('submit', sendCode);
+        codeStep.addEventListener('submit', verifyCode);
+        document.getElementById('resendLink').addEventListener('click', resendCode);
 
-        // Placeholder for quick access buttons
-        document.querySelectorAll('.quick-access-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert(`DEMO: You clicked "${e.target.textContent}". This would navigate to the relevant section or open a form.`);
-            });
+        chatWidget.addEventListener('click', () => {
+            window.open('https://example.com/clinical-chatbot', '_blank', 'noopener');
         });
     </script>
 </body>
