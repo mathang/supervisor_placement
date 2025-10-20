@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Supervisor Portal Demo</title>
+    <style>
+        /* Basic CSS for styling - keep it clean and simple */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+        .header img {
+            max-width: 150px; /* Placeholder for university logo */
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            color: #0056b3; /* University primary color */
+            font-size: 2.2em;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .emergency-contact {
+            background-color: #ffe0b2; /* Light orange */
+            border: 1px solid #ffcc80;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: #e65100; /* Darker orange */
+            margin-bottom: 30px;
+            display: none; /* Hidden by default, shown after login */
+        }
+        .dashboard-section {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        .dashboard-section h2 {
+            color: #0056b3;
+            margin-top: 0;
+            font-size: 1.6em;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .quick-access-button {
+            display: block;
+            padding: 25px 20px;
+            background-color: #007bff; /* Primary button color */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .quick-access-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .status-items p {
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+        .status-items p strong {
+            color: #0056b3;
+        }
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745; /* Green for chat */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+        .chat-widget:hover {
+            background-color: #218838;
+        }
+
+        /* Login Form Specific Styles */
+        #login-section {
+            text-align: center;
+        }
+        #login-form {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            display: inline-block; /* To center the form */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+        #login-form input[type="email"],
+        #login-form input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1.1em;
+        }
+        #login-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        #login-form button:hover {
+            background-color: #0056b3;
+        }
+        .login-message {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <img src="data:image/png;base64,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" alt="University Logo">
+            <h1>Clinical Placement Supervisor Portal</h1>
+        </div>
+
+        <div id="login-section">
+            <div id="email-step">
+                <p>Welcome! Enter your registered email to get started.</p>
+                <form id="login-form" onsubmit="sendCode(event)">
+                    <input type="email" id="emailInput" placeholder="your.email@example.com" required>
+                    <button type="submit">Send Login Code</button>
+                    <p class="login-message">No complex passwords – just your email and a quick SMS code.</p>
+                </form>
+            </div>
+
+            <div id="code-step" class="hidden">
+                <p>A login code has been sent to your mobile phone. Please enter it below.</p>
+                <form id="code-form" onsubmit="verifyCode(event)">
+                    <input type="text" id="codeInput" placeholder="Enter SMS code" required maxlength="6">
+                    <label style="display: block; margin-top: 10px; font-size: 0.9em;">
+                        <input type="checkbox" id="rememberDevice"> Remember this device (30 days)
+                    </label>
+                    <button type="submit" style="margin-top: 20px;">Log In</button>
+                    <p class="login-message">Code expires in 5 minutes. Didn't receive it? <a href="#" onclick="resendCode(event)">Resend code</a>.</p>
+                </form>
+            </div>
+        </div>
+
+        <div id="portal-dashboard" class="hidden">
+            <div class="emergency-contact" id="emergencyContact">
+                Need urgent help? Call us immediately: **+61 7 1234 5678**
+            </div>
+
+            <div class="dashboard-section">
+                <h2 id="greeting">Welcome back, Dr. Smith!</h2>
+                <div class="status-items">
+                    <p>Current Students: <strong>2 (Sarah Chen, Tom Davies)</strong></p>
+                    <p>Upcoming Deadline: <strong>Sarah Chen's Mid-Way Assessment due July 15</strong></p>
+                    <p>New Messages: <strong>1 (from Clinical Educator, re: Tom Davies)</strong></p>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h2>Quick Access Menu</h2>
+                <div class="quick-access-grid">
+                    <a href="#" class="quick-access-button">View My Students</a>
+                    <a href="#" class="quick-access-button">Complete Assessments</a>
+                    <a href="#" class="quick-access-button">Resource Library</a>
+                    <a href="#" class="quick-access-button">Message Educators</a>
+                    <a href="#" class="quick-access-button">Book Site Visit</a>
+                    <a href="#" class="quick-access-button">Submit Feedback</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-widget">
+        Chat with our AI Assistant
+    </div>
+
+    <script>
+        // --- DEMONSTRATION JAVASCRIPT ---
+        // In a real application, these functions would involve API calls to your backend (Power Automate, SharePoint, etc.)
+        // For this demo, we'll simulate the process.
+
+        const emailStep = document.getElementById('email-step');
+        const codeStep = document.getElementById('code-step');
+        const portalDashboard = document.getElementById('portal-dashboard');
+        const emergencyContact = document.getElementById('emergencyContact');
+        const greeting = document.getElementById('greeting');
+        const emailInput = document.getElementById('emailInput');
+        const codeInput = document.getElementById('codeInput');
+        const rememberDeviceCheckbox = document.getElementById('rememberDevice');
+
+        let simulatedUserEmail = ''; // To store the email entered
+        let correctSimulatedCode = '123456'; // A fixed code for demo purposes
+
+        function sendCode(event) {
+            event.preventDefault(); // Prevent default form submission
+            simulatedUserEmail = emailInput.value; // Store the entered email
+
+            // Simulate sending code (in a real app, Power Automate sends SMS)
+            console.log(`Simulating: SMS code '${correctSimulatedCode}' sent to ${simulatedUserEmail}`);
+
+            emailStep.classList.add('hidden');
+            codeStep.classList.remove('hidden');
+            codeInput.focus(); // Focus on the code input
+            alert(`DEMO: A login code '${correctSimulatedCode}' has been "sent" to your phone.`); // For demo clarity
+        }
+
+        function verifyCode(event) {
+            event.preventDefault(); // Prevent default form submission
+            const enteredCode = codeInput.value;
+
+            if (enteredCode === correctSimulatedCode) {
+                // Simulate successful login
+                codeStep.classList.add('hidden');
+                portalDashboard.classList.remove('hidden');
+                emergencyContact.style.display = 'block'; // Show emergency contact on dashboard
+                
+                // Personalize greeting
+                const userName = simulatedUserEmail.split('@')[0]; // Simple extraction
+                greeting.textContent = `Welcome back, ${capitalizeFirstLetter(userName)}!`;
+
+                // In a real app, "remember device" would set a secure cookie/token
+                if (rememberDeviceCheckbox.checked) {
+                    console.log("DEMO: Device remembered. In a real app, this would set a persistent token.");
+                }
+                alert('DEMO: Login successful! Welcome to the portal.'); // For demo clarity
+            } else {
+                alert('Incorrect code. Please try again.');
+                codeInput.value = ''; // Clear input
+            }
+        }
+
+        function resendCode(event) {
+            event.preventDefault();
+            // Simulate resending code
+            console.log(`Simulating: Resending SMS code '${correctSimulatedCode}' to ${simulatedUserEmail}`);
+            alert(`DEMO: Code '${correctSimulatedCode}' has been "resent" to your phone.`); // For demo clarity
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        // Placeholder for Chatbot interaction
+        document.querySelector('.chat-widget').addEventListener('click', () => {
+            alert('DEMO: Chatbot would open here. You can ask questions like "Who is my student?" or "How do I submit an assessment?"');
+        });
+
+        // Placeholder for quick access buttons
+        document.querySelectorAll('.quick-access-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(`DEMO: You clicked "${e.target.textContent}". This would navigate to the relevant section or open a form.`);
+            });
+        });
+    </script>
+</body>
+</html>
