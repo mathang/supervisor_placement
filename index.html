@@ -198,6 +198,14 @@
             display: none !important;
         }
 
+        .page h2 span {
+            font-weight: normal;
+            display: block;
+            font-size: 0.9em;
+            color: #4a4a4a;
+            margin-top: 6px;
+        }
+
         .back-button {
             background: none;
             border: none;
@@ -216,19 +224,6 @@
         .back-button:focus {
             text-decoration: underline;
             outline: none;
-        }
-
-        .view-header p {
-            margin: 10px 0 0;
-            color: #4a4a4a;
-        }
-
-        .view-content {
-            margin-top: 24px;
-            background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
         }
 
         .detail-list {
@@ -287,15 +282,330 @@
             </div>
         </div>
 
-        <div id="portal-dashboard" class="hidden">
-            <div class="dashboard-section welcome-panel">
-                <h2 id="greeting">Welcome back!</h2>
-                <p>Choose a task below to jump into your supervision workflow.</p>
-            </div>
+        <div id="portal-content" class="hidden">
             <div id="emergencyContact" class="emergency-contact">
                 Emergency support: Call the Clinical Placement Team at (555) 123-4567 for urgent assistance.
             </div>
-            <div id="view-container"></div>
+
+            <section class="page" data-page="dashboard">
+                <div class="dashboard-section">
+                    <h2 id="greeting">Welcome back!</h2>
+                    <p>Choose a task below to jump into your supervision workflow.</p>
+                </div>
+                <div class="dashboard-section">
+                    <h2>Placement Snapshot</h2>
+                    <div class="status-items">
+                        <p><strong>Current Students:</strong> 12 actively placed this term</p>
+                        <p><strong>Assessments Due:</strong> 3 midterm reviews within the next 7 days</p>
+                        <p><strong>Messages:</strong> 2 new updates from university educators</p>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h2>Quick Access Menu</h2>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="students">View My Students</button>
+                        <button type="button" class="quick-access-button" data-navigate="assessments">Complete Assessments</button>
+                        <button type="button" class="quick-access-button" data-navigate="resources">Resource Library</button>
+                        <button type="button" class="quick-access-button" data-navigate="messages">Message Educators</button>
+                        <button type="button" class="quick-access-button" data-navigate="site-visits">Book Site Visit</button>
+                        <button type="button" class="quick-access-button" data-navigate="feedback">Submit Feedback</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="students">
+                <button type="button" class="back-button" data-navigate="dashboard">&larr; Back to Dashboard</button>
+                <div class="dashboard-section">
+                    <h2>My Students <span>Track placement progress and stay connected with each learner.</span></h2>
+                    <p>Use the options below to drill into placement assignments, progress reviews, and communication history.</p>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="students-overview">Placement Overview</button>
+                        <button type="button" class="quick-access-button" data-navigate="students-progress">Progress Reviews</button>
+                        <button type="button" class="quick-access-button" data-navigate="students-communication">Communication Log</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="students-overview">
+                <button type="button" class="back-button" data-navigate="students">&larr; Back to My Students</button>
+                <div class="dashboard-section">
+                    <h2>Placement Overview <span>Snapshot of active placements and clinical sites.</span></h2>
+                    <ul class="detail-list">
+                        <li>8 active placements confirmed with weekly reflections submitted.</li>
+                        <li>2 students flagged for additional support — review notes before Friday.</li>
+                        <li>Download the placement matrix to view clinical hours completed to date.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="students-progress">
+                <button type="button" class="back-button" data-navigate="students">&larr; Back to My Students</button>
+                <div class="dashboard-section">
+                    <h2>Progress Reviews <span>Monitor competency development across evaluations.</span></h2>
+                    <ul class="detail-list">
+                        <li>Midterm rubrics auto-save — finish drafts before sharing with learners.</li>
+                        <li>Compare self-assessments with supervisor ratings to highlight discussion points.</li>
+                        <li>Schedule 1:1 check-ins directly from each student profile.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="students-communication">
+                <button type="button" class="back-button" data-navigate="students">&larr; Back to My Students</button>
+                <div class="dashboard-section">
+                    <h2>Communication Log <span>Document outreach and follow-up commitments.</span></h2>
+                    <ul class="detail-list">
+                        <li>Log call summaries and attach follow-up tasks for learners.</li>
+                        <li>Tag discussions that require educator escalation.</li>
+                        <li>Generate a weekly digest of student updates for record keeping.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="assessments">
+                <button type="button" class="back-button" data-navigate="dashboard">&larr; Back to Dashboard</button>
+                <div class="dashboard-section">
+                    <h2>Assessments <span>Launch new evaluations or complete drafts in progress.</span></h2>
+                    <p>Select an option to view the related assessment workspace.</p>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="assessments-midterm">Start Midterm Assessment</button>
+                        <button type="button" class="quick-access-button" data-navigate="assessments-final">Finalize Final Assessment</button>
+                        <button type="button" class="quick-access-button" data-navigate="assessments-history">Review Past Assessments</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="assessments-midterm">
+                <button type="button" class="back-button" data-navigate="assessments">&larr; Back to Assessments</button>
+                <div class="dashboard-section">
+                    <h2>Midterm Assessment Workspace <span>Capture formative feedback and goals.</span></h2>
+                    <ul class="detail-list">
+                        <li>Complete required competency ratings and narrative reflections.</li>
+                        <li>Share draft results with learners for acknowledgement.</li>
+                        <li>Schedule follow-up coaching conversations directly from this page.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="assessments-final">
+                <button type="button" class="back-button" data-navigate="assessments">&larr; Back to Assessments</button>
+                <div class="dashboard-section">
+                    <h2>Final Assessment Workspace <span>Summative evaluations and sign-off.</span></h2>
+                    <ul class="detail-list">
+                        <li>Review cumulative performance trends across the placement.</li>
+                        <li>Capture final competency ratings and narrative summary.</li>
+                        <li>Generate the signature packet for institutional records.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="assessments-history">
+                <button type="button" class="back-button" data-navigate="assessments">&larr; Back to Assessments</button>
+                <div class="dashboard-section">
+                    <h2>Assessment History <span>Reference previously submitted evaluations.</span></h2>
+                    <ul class="detail-list">
+                        <li>Filter assessments by academic term or placement site.</li>
+                        <li>Download archived PDFs for accreditation audits.</li>
+                        <li>Compare longitudinal performance for returning students.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="resources">
+                <button type="button" class="back-button" data-navigate="dashboard">&larr; Back to Dashboard</button>
+                <div class="dashboard-section">
+                    <h2>Resource Library <span>Guides, policies, and teaching aids in one place.</span></h2>
+                    <p>Open a collection below to review curated support materials.</p>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="resources-guides">Orientation Guides</button>
+                        <button type="button" class="quick-access-button" data-navigate="resources-policies">Clinical Policies</button>
+                        <button type="button" class="quick-access-button" data-navigate="resources-teaching">Teaching Aids</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="resources-guides">
+                <button type="button" class="back-button" data-navigate="resources">&larr; Back to Resource Library</button>
+                <div class="dashboard-section">
+                    <h2>Orientation Guides <span>Get new supervisors and students ready for success.</span></h2>
+                    <ul class="detail-list">
+                        <li>Download the first-day checklist for clinical placements.</li>
+                        <li>Share communication expectations with students and preceptors.</li>
+                        <li>Review onboarding videos that explain documentation standards.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="resources-policies">
+                <button type="button" class="back-button" data-navigate="resources">&larr; Back to Resource Library</button>
+                <div class="dashboard-section">
+                    <h2>Clinical Policies <span>Ensure compliance with program and site requirements.</span></h2>
+                    <ul class="detail-list">
+                        <li>Access the latest infection control and safety protocols.</li>
+                        <li>Review attendance policies for excused absences and make-up hours.</li>
+                        <li>Download supervisor responsibilities for accreditation purposes.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="resources-teaching">
+                <button type="button" class="back-button" data-navigate="resources">&larr; Back to Resource Library</button>
+                <div class="dashboard-section">
+                    <h2>Teaching Aids <span>Tools to support reflective practice and skill mastery.</span></h2>
+                    <ul class="detail-list">
+                        <li>Use coaching conversation prompts to guide debriefs.</li>
+                        <li>Assign clinical reasoning case studies tailored to placement goals.</li>
+                        <li>Explore rubric exemplars for consistent evaluation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="messages">
+                <button type="button" class="back-button" data-navigate="dashboard">&larr; Back to Dashboard</button>
+                <div class="dashboard-section">
+                    <h2>Message Educators <span>Coordinate support with university partners.</span></h2>
+                    <p>Select a workspace to review or compose conversations.</p>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="messages-inbox">Educator Inbox</button>
+                        <button type="button" class="quick-access-button" data-navigate="messages-escalations">Escalations</button>
+                        <button type="button" class="quick-access-button" data-navigate="messages-announcements">Announcements</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="messages-inbox">
+                <button type="button" class="back-button" data-navigate="messages">&larr; Back to Message Educators</button>
+                <div class="dashboard-section">
+                    <h2>Educator Inbox <span>Follow up on program communications.</span></h2>
+                    <ul class="detail-list">
+                        <li>Review unread updates that require supervisor acknowledgment.</li>
+                        <li>Reply to educator feedback with supporting documentation.</li>
+                        <li>Archive completed threads for record keeping.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="messages-escalations">
+                <button type="button" class="back-button" data-navigate="messages">&larr; Back to Message Educators</button>
+                <div class="dashboard-section">
+                    <h2>Escalations <span>Collaborate on urgent learner concerns.</span></h2>
+                    <ul class="detail-list">
+                        <li>Log urgent issues and assign follow-up owners.</li>
+                        <li>Document intervention plans and status updates.</li>
+                        <li>Track resolution timelines across the academic team.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="messages-announcements">
+                <button type="button" class="back-button" data-navigate="messages">&larr; Back to Message Educators</button>
+                <div class="dashboard-section">
+                    <h2>Announcements <span>Share important updates with placement teams.</span></h2>
+                    <ul class="detail-list">
+                        <li>Draft upcoming training reminders and site-wide notices.</li>
+                        <li>Preview announcement delivery before sending.</li>
+                        <li>Review engagement metrics for recent communications.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="site-visits">
+                <button type="button" class="back-button" data-navigate="dashboard">&larr; Back to Dashboard</button>
+                <div class="dashboard-section">
+                    <h2>Book Site Visit <span>Coordinate on-site evaluations and observations.</span></h2>
+                    <p>Choose a scheduling workspace to finalize visit logistics.</p>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="site-visits-schedule">Schedule Visit</button>
+                        <button type="button" class="quick-access-button" data-navigate="site-visits-prep">Visit Preparation</button>
+                        <button type="button" class="quick-access-button" data-navigate="site-visits-followup">Post-Visit Follow-up</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="site-visits-schedule">
+                <button type="button" class="back-button" data-navigate="site-visits">&larr; Back to Book Site Visit</button>
+                <div class="dashboard-section">
+                    <h2>Schedule Visit <span>Select dates and confirm placement attendance.</span></h2>
+                    <ul class="detail-list">
+                        <li>View upcoming availability for clinical educators.</li>
+                        <li>Coordinate with site preceptors to confirm observation windows.</li>
+                        <li>Send calendar invites to all stakeholders.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="site-visits-prep">
+                <button type="button" class="back-button" data-navigate="site-visits">&larr; Back to Book Site Visit</button>
+                <div class="dashboard-section">
+                    <h2>Visit Preparation <span>Gather materials and focus areas before arrival.</span></h2>
+                    <ul class="detail-list">
+                        <li>Review recent student reflections and supervisor notes.</li>
+                        <li>Outline priority competencies to observe on-site.</li>
+                        <li>Upload observation tools for easy access during the visit.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="site-visits-followup">
+                <button type="button" class="back-button" data-navigate="site-visits">&larr; Back to Book Site Visit</button>
+                <div class="dashboard-section">
+                    <h2>Post-Visit Follow-up <span>Close the loop with learners and educators.</span></h2>
+                    <ul class="detail-list">
+                        <li>Send summary notes and action items to students.</li>
+                        <li>Assign any remediation tasks stemming from observations.</li>
+                        <li>Record outcomes to inform accreditation reporting.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="feedback">
+                <button type="button" class="back-button" data-navigate="dashboard">&larr; Back to Dashboard</button>
+                <div class="dashboard-section">
+                    <h2>Submit Feedback <span>Share insights that improve future placements.</span></h2>
+                    <p>Pick a channel below to provide feedback to the program.</p>
+                    <div class="quick-access-grid">
+                        <button type="button" class="quick-access-button" data-navigate="feedback-student">Student Performance Feedback</button>
+                        <button type="button" class="quick-access-button" data-navigate="feedback-program">Program Improvement</button>
+                        <button type="button" class="quick-access-button" data-navigate="feedback-site">Clinical Site Reflections</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="feedback-student">
+                <button type="button" class="back-button" data-navigate="feedback">&larr; Back to Submit Feedback</button>
+                <div class="dashboard-section">
+                    <h2>Student Performance Feedback <span>Document learner strengths and growth areas.</span></h2>
+                    <ul class="detail-list">
+                        <li>Highlight clinical competencies that meet or exceed expectations.</li>
+                        <li>Identify targeted coaching opportunities for the next rotation.</li>
+                        <li>Attach supporting examples from observations and documentation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="feedback-program">
+                <button type="button" class="back-button" data-navigate="feedback">&larr; Back to Submit Feedback</button>
+                <div class="dashboard-section">
+                    <h2>Program Improvement <span>Share insights to strengthen curriculum partnerships.</span></h2>
+                    <ul class="detail-list">
+                        <li>Report on course alignment with clinical experiences.</li>
+                        <li>Recommend resources that would support supervisors and students.</li>
+                        <li>Capture trends that should inform future placements.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="page hidden" data-page="feedback-site">
+                <button type="button" class="back-button" data-navigate="feedback">&larr; Back to Submit Feedback</button>
+                <div class="dashboard-section">
+                    <h2>Clinical Site Reflections <span>Provide feedback about the placement environment.</span></h2>
+                    <ul class="detail-list">
+                        <li>Evaluate site readiness and available learning opportunities.</li>
+                        <li>Note equipment, staffing, or scheduling constraints.</li>
+                        <li>Recommend follow-up conversations with site leadership.</li>
+                    </ul>
+                </div>
+            </section>
         </div>
     </div>
 
@@ -306,439 +616,88 @@
     <script>
         const emailStep = document.getElementById('email-step');
         const codeStep = document.getElementById('code-step');
-        const portalDashboard = document.getElementById('portal-dashboard');
+        const portalContent = document.getElementById('portal-content');
         const emergencyContact = document.getElementById('emergencyContact');
         const greeting = document.getElementById('greeting');
         const emailInput = document.getElementById('emailInput');
         const codeInput = document.getElementById('codeInput');
         const rememberDeviceCheckbox = document.getElementById('rememberDevice');
         const loginStatus = document.getElementById('loginStatus');
-        const viewContainer = document.getElementById('view-container');
         const chatWidget = document.getElementById('chatWidget');
 
         let simulatedUserEmail = '';
         const correctSimulatedCode = '123456';
 
-        const views = {
-            dashboard: {
-                title: 'Dashboard',
-                render: () => `
-                    <div class="dashboard-section">
-                        <h2>Placement Snapshot</h2>
-                        <div class="status-items">
-                            <p><strong>Current Students:</strong> 12 actively placed this term</p>
-                            <p><strong>Assessments Due:</strong> 3 midterm reviews within the next 7 days</p>
-                            <p><strong>Messages:</strong> 2 new updates from university educators</p>
-                        </div>
-                    </div>
-                    <div class="dashboard-section">
-                        <h2>Quick Access Menu</h2>
-                        <div class="quick-access-grid">
-                            ${createActionButton('View My Students', 'students')}
-                            ${createActionButton('Complete Assessments', 'assessments')}
-                            ${createActionButton('Resource Library', 'resources')}
-                            ${createActionButton('Message Educators', 'messages')}
-                            ${createActionButton('Book Site Visit', 'site-visits')}
-                            ${createActionButton('Submit Feedback', 'feedback')}
-                        </div>
-                    </div>
-                `
-            },
-            students: {
-                title: 'My Students',
-                description: 'Track placement progress, evaluation milestones, and communication history for each student you supervise.',
-                actions: [
-                    { label: 'Placement Overview', target: 'students-overview' },
-                    { label: 'Progress Reviews', target: 'students-progress' },
-                    { label: 'Student Communication Log', target: 'students-communication' }
-                ],
-                parent: 'dashboard'
-            },
-            'students-overview': {
-                title: 'Placement Overview',
-                description: 'Review placement assignments, site details, and key contacts for every active student.',
-                content: `
-                    <ul class="detail-list">
-                        <li>8 active placements confirmed with weekly reflections submitted.</li>
-                        <li>2 students flagged for additional support — review notes before Friday.</li>
-                        <li>Download the placement matrix to view clinical hours completed to date.</li>
-                    </ul>
-                `,
-                parent: 'students'
-            },
-            'students-progress': {
-                title: 'Progress Reviews',
-                description: 'Monitor competency development through formative and summative evaluations.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Midterm rubrics auto-save — finish drafts before sharing with learners.</li>
-                        <li>Compare self-assessments with supervisor ratings to highlight discussion points.</li>
-                        <li>Schedule 1:1 check-ins directly from each student profile.</li>
-                    </ul>
-                `,
-                parent: 'students'
-            },
-            'students-communication': {
-                title: 'Student Communication Log',
-                description: 'Document outreach, coaching notes, and agreements from supervisory conversations.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Log call summaries and attach follow-up tasks for learners.</li>
-                        <li>Tag discussions that require educator escalation.</li>
-                        <li>Generate a weekly digest of student updates for record keeping.</li>
-                    </ul>
-                `,
-                parent: 'students'
-            },
-            assessments: {
-                title: 'Assessments',
-                description: 'Launch new evaluations and revisit drafts awaiting completion.',
-                actions: [
-                    { label: 'Start Midterm Assessment', target: 'assessments-midterm' },
-                    { label: 'Finalize Final Assessment', target: 'assessments-final' },
-                    { label: 'Review Past Assessments', target: 'assessments-history' }
-                ],
-                parent: 'dashboard'
-            },
-            'assessments-midterm': {
-                title: 'Midterm Assessment',
-                description: 'Capture midpoint performance insights with guided prompts and rubrics.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Pre-populated criteria aligned with university competencies.</li>
-                        <li>Auto-save responses and share drafts with co-supervisors.</li>
-                        <li>Schedule a feedback meeting and send calendar invites.</li>
-                    </ul>
-                `,
-                parent: 'assessments'
-            },
-            'assessments-final': {
-                title: 'Final Assessment',
-                description: 'Document overall performance, recommendations, and licensing readiness.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Summarize strengths, growth areas, and final placement decision.</li>
-                        <li>Attach evidence artifacts collected throughout the term.</li>
-                        <li>Export signed copies for institutional records.</li>
-                    </ul>
-                `,
-                parent: 'assessments'
-            },
-            'assessments-history': {
-                title: 'Assessment Archive',
-                description: 'Browse previous evaluations to spot trends over multiple placements.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Filter by student, cohort, or competency to compare outcomes.</li>
-                        <li>Download PDFs for accreditation reporting.</li>
-                        <li>Identify patterns that inform supervisor calibration sessions.</li>
-                    </ul>
-                `,
-                parent: 'assessments'
-            },
-            resources: {
-                title: 'Resource Library',
-                description: 'Access clinical guides, teaching supports, and policy references.',
-                actions: [
-                    { label: 'Clinical Guidelines', target: 'resources-guidelines' },
-                    { label: 'Teaching Resources', target: 'resources-teaching' },
-                    { label: 'Policy Updates', target: 'resources-policy' }
-                ],
-                parent: 'dashboard'
-            },
-            'resources-guidelines': {
-                title: 'Clinical Guidelines',
-                description: 'Ensure placements align with the latest clinical standards and safety expectations.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Download procedural checklists tailored to each specialty area.</li>
-                        <li>Review evidence-based practice updates added this month.</li>
-                        <li>Share guideline summaries with your student cohort.</li>
-                    </ul>
-                `,
-                parent: 'resources'
-            },
-            'resources-teaching': {
-                title: 'Teaching Resources',
-                description: 'Leverage coaching tools and reflection prompts to guide learner growth.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Access skill lab scenarios complete with debrief questions.</li>
-                        <li>Browse mentorship strategies curated by faculty leads.</li>
-                        <li>Assign reflection activities that tie to competency rubrics.</li>
-                    </ul>
-                `,
-                parent: 'resources'
-            },
-            'resources-policy': {
-                title: 'Policy Updates',
-                description: 'Stay informed about placement compliance, documentation, and safety requirements.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Review the latest background check submission timelines.</li>
-                        <li>Download the updated clinical dress code policy.</li>
-                        <li>Track mandatory training completion for site staff.</li>
-                    </ul>
-                `,
-                parent: 'resources'
-            },
-            messages: {
-                title: 'Message Educators',
-                description: 'Collaborate with academic staff to coordinate support for learners.',
-                actions: [
-                    { label: 'Compose New Message', target: 'messages-compose' },
-                    { label: 'View Inbox', target: 'messages-inbox' },
-                    { label: 'Schedule Video Call', target: 'messages-schedule' }
-                ],
-                parent: 'dashboard'
-            },
-            'messages-compose': {
-                title: 'Compose Message',
-                description: 'Send secure updates directly to the academic educator team.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Use templates for student progress alerts and success highlights.</li>
-                        <li>Attach assessment drafts or supporting documents.</li>
-                        <li>Route urgent concerns through the escalation workflow.</li>
-                    </ul>
-                `,
-                parent: 'messages'
-            },
-            'messages-inbox': {
-                title: 'Inbox Overview',
-                description: 'Keep track of educator responses and outstanding action items.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Mark messages as complete once tasks are fulfilled.</li>
-                        <li>Pin priority conversations for quick reference.</li>
-                        <li>Export conversation history for accreditation audits.</li>
-                    </ul>
-                `,
-                parent: 'messages'
-            },
-            'messages-schedule': {
-                title: 'Schedule Video Call',
-                description: 'Coordinate virtual meetings to align on student progress plans.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Offer time slots synced with your calendar availability.</li>
-                        <li>Auto-generate meeting agendas with student talking points.</li>
-                        <li>Send follow-up summaries and action items to attendees.</li>
-                    </ul>
-                `,
-                parent: 'messages'
-            },
-            'site-visits': {
-                title: 'Book Site Visit',
-                description: 'Plan on-site observations to support clinical learning environments.',
-                actions: [
-                    { label: 'Request New Visit', target: 'visits-request' },
-                    { label: 'View Upcoming Visits', target: 'visits-upcoming' },
-                    { label: 'Document Visit Notes', target: 'visits-notes' }
-                ],
-                parent: 'dashboard'
-            },
-            'visits-request': {
-                title: 'Request a Visit',
-                description: 'Submit preferred dates, focus areas, and stakeholders for your next visit.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Check site capacity and blackout dates before sending.</li>
-                        <li>Select visit objectives aligned with learner goals.</li>
-                        <li>Receive confirmation notifications once scheduled.</li>
-                    </ul>
-                `,
-                parent: 'site-visits'
-            },
-            'visits-upcoming': {
-                title: 'Upcoming Visits',
-                description: 'Review scheduled visits, logistics, and preparation tasks.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Download agendas and observation checklists for each visit.</li>
-                        <li>Coordinate with site staff using embedded contact links.</li>
-                        <li>Confirm travel arrangements and documentation requirements.</li>
-                    </ul>
-                `,
-                parent: 'site-visits'
-            },
-            'visits-notes': {
-                title: 'Visit Notes',
-                description: 'Capture observations, coaching points, and follow-up actions.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Tag notes to students, competencies, or site resources.</li>
-                        <li>Share summarized feedback with learners post-visit.</li>
-                        <li>Export notes for accreditation or site partnership reviews.</li>
-                    </ul>
-                `,
-                parent: 'site-visits'
-            },
-            feedback: {
-                title: 'Submit Feedback',
-                description: 'Provide insights that improve clinical placements and supervisor support.',
-                actions: [
-                    { label: 'Share Student Feedback', target: 'feedback-student' },
-                    { label: 'Report Site Issue', target: 'feedback-site' },
-                    { label: 'Suggest New Resource', target: 'feedback-resource' }
-                ],
-                parent: 'dashboard'
-            },
-            'feedback-student': {
-                title: 'Student Feedback',
-                description: 'Celebrate achievements and note opportunities for additional coaching.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Highlight key competency milestones reached this term.</li>
-                        <li>Flag areas where faculty support would be beneficial.</li>
-                        <li>Share testimonials to recognize outstanding performance.</li>
-                    </ul>
-                `,
-                parent: 'feedback'
-            },
-            'feedback-site': {
-                title: 'Site Issue Report',
-                description: 'Alert the placement office to concerns impacting safety or learning quality.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Log environmental or staffing challenges encountered.</li>
-                        <li>Attach supporting documentation or photos securely.</li>
-                        <li>Track resolution progress with placement coordinators.</li>
-                    </ul>
-                `,
-                parent: 'feedback'
-            },
-            'feedback-resource': {
-                title: 'Suggest a Resource',
-                description: 'Recommend tools, readings, or workshops that elevate supervision practice.',
-                content: `
-                    <ul class="detail-list">
-                        <li>Submit lesson plans or reflection prompts that worked well.</li>
-                        <li>Nominate external experts for guest teaching sessions.</li>
-                        <li>Flag technology platforms that streamline documentation.</li>
-                    </ul>
-                `,
-                parent: 'feedback'
-            }
-        };
+        const pages = document.querySelectorAll('.page');
+        const navigationButtons = document.querySelectorAll('[data-navigate]');
 
-        function createActionButton(label, target) {
-            return `<button type="button" class="quick-access-button" data-target="${target}">${label}</button>`;
-        }
-
-        function renderView(viewId) {
-            const view = views[viewId];
-            if (!view) {
-                console.warn(`View "${viewId}" not found.`);
-                return;
-            }
-
-            if (viewId === 'dashboard') {
-                viewContainer.innerHTML = view.render();
-                attachActionHandlers();
-                return;
-            }
-
-            let html = '<div class="dashboard-section">';
-
-            if (view.parent) {
-                const parentTitle = views[view.parent]?.title || 'Dashboard';
-                html += `<button type="button" class="back-button" data-target="${view.parent}">← Back to ${parentTitle}</button>`;
-            }
-
-            html += `<div class="view-header"><h2>${view.title}</h2>`;
-            if (view.description) {
-                html += `<p>${view.description}</p>`;
-            }
-            html += '</div>';
-
-            if (view.actions?.length) {
-                html += '<div class="quick-access-grid">';
-                html += view.actions.map(action => createActionButton(action.label, action.target)).join('');
-                html += '</div>';
-            }
-
-            if (view.content) {
-                html += `<div class="view-content">${view.content}</div>`;
-            }
-
-            html += '</div>';
-
-            viewContainer.innerHTML = html;
-            attachActionHandlers();
-        }
-
-        function attachActionHandlers() {
-            viewContainer.querySelectorAll('[data-target]').forEach(button => {
-                button.addEventListener('click', () => {
-                    const target = button.getAttribute('data-target');
-                    renderView(target);
-                });
+        function showPage(pageName) {
+            pages.forEach(page => {
+                page.classList.toggle('hidden', page.dataset.page !== pageName);
             });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function sendCode(event) {
+        function personalizeGreeting(email) {
+            const namePart = email.split('@')[0];
+            const words = namePart.split(/[._-]+/).filter(Boolean);
+            const displayName = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || 'Supervisor';
+            greeting.textContent = `Welcome back, ${displayName}!`;
+        }
+
+        emailStep.addEventListener('submit', function (event) {
             event.preventDefault();
             simulatedUserEmail = emailInput.value.trim();
-
             if (!simulatedUserEmail) {
-                loginStatus.textContent = 'Please enter a valid university email.';
+                loginStatus.textContent = 'Please enter a valid university email address to continue.';
                 return;
             }
 
-            console.log(`Simulating: SMS code "${correctSimulatedCode}" sent to ${simulatedUserEmail}`);
-
+            loginStatus.textContent = 'Access code sent! Check your messages for the 6-digit code.';
             emailStep.classList.add('hidden');
             codeStep.classList.remove('hidden');
             codeInput.focus();
-            loginStatus.textContent = 'Demo mode: use code 123456 to continue.';
-        }
+        });
 
-        function verifyCode(event) {
+        codeStep.addEventListener('submit', function (event) {
             event.preventDefault();
             const enteredCode = codeInput.value.trim();
 
             if (enteredCode === correctSimulatedCode) {
-                codeStep.classList.add('hidden');
-                portalDashboard.classList.remove('hidden');
-                emergencyContact.style.display = 'block';
-
-                const userName = simulatedUserEmail.split('@')[0] || 'Supervisor';
-                greeting.textContent = `Welcome back, ${capitalizeFirstLetter(userName)}!`;
-
-                if (rememberDeviceCheckbox.checked) {
-                    console.log('Demo: device remembered for future logins.');
-                }
-
                 loginStatus.textContent = '';
-                renderView('dashboard');
+                document.getElementById('login-section').classList.add('hidden');
+                portalContent.classList.remove('hidden');
+                emergencyContact.style.display = 'block';
+                personalizeGreeting(simulatedUserEmail);
+                showPage('dashboard');
+                if (rememberDeviceCheckbox.checked) {
+                    console.log('Device will be remembered for future logins.');
+                }
             } else {
-                loginStatus.textContent = 'Incorrect code. Please try again or resend the code.';
+                loginStatus.textContent = 'That code was incorrect. Please try again.';
                 codeInput.value = '';
                 codeInput.focus();
             }
-        }
+        });
 
-        function resendCode(event) {
+        document.getElementById('resendLink').addEventListener('click', function (event) {
             event.preventDefault();
-            if (!simulatedUserEmail) {
-                loginStatus.textContent = 'Enter your email first so we know where to send the code.';
-                return;
-            }
-            console.log(`Simulating: Resending SMS code "${correctSimulatedCode}" to ${simulatedUserEmail}`);
-            loginStatus.textContent = 'Demo mode: code 123456 has been resent.';
-        }
+            loginStatus.textContent = 'A new access code has been sent to your device.';
+        });
 
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
+        navigationButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                const targetPage = button.dataset.navigate;
+                if (targetPage === 'external-chat') {
+                    return;
+                }
+                event.preventDefault();
+                showPage(targetPage);
+            });
+        });
 
-        emailStep.addEventListener('submit', sendCode);
-        codeStep.addEventListener('submit', verifyCode);
-        document.getElementById('resendLink').addEventListener('click', resendCode);
-
-        chatWidget.addEventListener('click', () => {
-            window.open('https://example.com/clinical-chatbot', '_blank', 'noopener');
+        chatWidget.addEventListener('click', function () {
+            window.open('https://example.com/ai-assistant', '_blank', 'noopener');
         });
     </script>
 </body>
